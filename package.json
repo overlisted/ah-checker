@@ -1,0 +1,16 @@
+{
+  "name": "ahchecker",
+  "version": "1.0.0",
+  "description": "A bot for VKontakte.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "overlisted",
+  "dependencies": {
+    "filter-async": "^1.0.0",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.0",
+    "prismarine-nbt": "^1.2.1"
+  }
+}
