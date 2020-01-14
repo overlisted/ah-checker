@@ -1,5 +1,5 @@
 {
-  "name": "ahchecker",
+  "name": "ah-checker",
   "version": "1.0.0",
   "description": "A bot for VKontakte.",
   "main": "src/index.js",
