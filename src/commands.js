@@ -1,12 +1,10 @@
 const util = require("./util");
+const options = require("./options");
 
 const commandRegex = /\/([^ ]+)( .+)*/;
-
-let restrictedMode = false; // пока что не работает потому что я идиот
-
 function findCommand(message) {
   if(!commandRegex.test(message.text)) return;
-  if(restrictedMode && message.from_id !== util.adminID) return;
+  if(options.restricted === "true" && message.from_id !== util.adminID) return;
   const groups = commandRegex.exec(message.text);
 
   const args = groups[2] ? groups[2].split(" ") : [];
@@ -69,13 +67,31 @@ const commands = [
     }
   },
 
-  { // /togglerestrict
-    name: "togglerestrict",
-    argumentsCount: 0,
+  { // /options restricted
+    name: "options",
+    argumentsCount: 1,
     forAdmins: true,
     trigger: (args, peer) => {
-      util.sendMessage(peer, "Закрытый режим бота был переключен разработчиком.");
-      restrictedMode = !restrictedMode
+      util.sendMessage(peer, `Настройка ${args[0]}: ${options[args[0]]}`)
+    }
+  },
+
+  { // /options restricted = true
+    name: "options",
+    argumentsCount: 3,
+    forAdmins: true,
+    trigger: (args, peer) => {
+      if(args[1] === "=") {
+        const prev = options[args[0]];
+
+        options[args[0]] = args[2];
+        options.save();
+
+        util.sendMessage(
+          peer,
+          `Разработчик установил настройку ${args[0]} на ${args[2]} (старая настройка - ${prev})`
+        );
+      }
     }
   },
 
