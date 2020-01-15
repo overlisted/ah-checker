@@ -1,3 +1,5 @@
 const longPoll = require("./longpoll");
 
-(async () => longPoll.run())();
+(async () =>{
+  while(true) await longPoll.run();
+})();
