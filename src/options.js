@@ -14,7 +14,8 @@ class Options {
 
 let options;
 if(fs.existsSync(path)) {
-  options = JSON.parse(fs.readFileSync(path))
+  options = JSON.parse(fs.readFileSync(path));
+  options.save = function() { fs.writeFileSync(path, JSON.stringify(this, null, 2)) };
 } else {
   options = new Options();
   options.save();
