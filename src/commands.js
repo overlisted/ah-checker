@@ -25,7 +25,6 @@ function findCommand(message) {
 
 function buildAuctionsView(auctions) {
   return auctions
-
     .map(item => {
       const texts = [];
 
@@ -154,7 +153,15 @@ const commands = [
       textArr.push(openAuctionsText.join('\n'));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
-      util.sendMessage(peer, textArr.join("\n"));
+      const messages = [];
+      const lines = textArr.join("\n").split("\n");
+      const linesCount = lines.length;
+
+      for(let i = 0; i < linesCount; i += 20) {
+        messages.push(lines.filter((it, index) => index >= i && index < i + 20).join("\n"))
+      }
+
+      messages.forEach(async it => await util.sendMessage(peer, it));
     }
   },
 ];
