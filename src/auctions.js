@@ -4,12 +4,21 @@ const zlib = require("zlib");
 
 const coinsDeclensions = ["койн", "койна", "койнов"];
 
+function orEmptyString(condition, string) {
+  return condition ? string : "";
+}
+
 function buildAuctionsView(auctions) {
   return auctions
     .map(item => {
       const texts = [];
 
-      texts.push(`=====< ${item.count === 1 ? "" : `[x${item.count}]`} ${item.name} ${item.endTime - new Date() < 0 ? "(можно забрать!)" : ""}`);
+      texts.push(
+        `=====< ${
+          orEmptyString(item.count > 1, `[x${item.count}]`)
+        } ${item.name} ${
+          orEmptyString(item.endTime - new Date() < 0, "(можно забрать!)")
+        }`);
       if (item.endTime - new Date() > 0) texts.push(`Конец: ${util.moment(item.endTime).fromNow()}`);
       texts.push(
         `${item.bid === 0
