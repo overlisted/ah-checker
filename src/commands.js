@@ -26,6 +26,8 @@ function findCommand(message) {
   })
 }
 
+const coinsDeclensions = ["койн", "койна", "койнов"];
+
 function buildAuctionsView(auctions) {
   return auctions
     .map(item => {
@@ -35,8 +37,8 @@ function buildAuctionsView(auctions) {
       if (item.endTime - new Date() > 0) texts.push(`Конец: ${util.moment(item.endTime).fromNow()}`);
       texts.push(
         `${item.bid === 0
-          ? `Начальная ставка: ${util.formatter.format(item.startingBid)} койнов`
-          : `Последняя ставка: ${util.formatter.format(item.bid)} койнов от ${item.bidder}`
+          ? `Начальная ставка: ${util.formatter.format(item.startingBid)} ${util.findDeclension(item.bid, coinsDeclensions)}`
+          : `Последняя ставка: ${util.formatter.format(item.bid)} ${util.findDeclension(item.bid, coinsDeclensions)} от ${item.bidder}`
         }`
       );
       texts.push(`Редкость предмета: ${item.rarity}`);

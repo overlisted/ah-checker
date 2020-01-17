@@ -49,6 +49,15 @@ async function uuidToDisplayname(uuid) {
   return json[json.length - 1].name;
 }
 
+function findDeclension(number, cases) {
+  number = Math.abs(number) % 100;
+  const n = number % 10;
+  if (number > 10 && number < 20) return cases[2];
+  if (n > 1 && n < 5) return cases[1];
+  if (n === 1) return cases[0];
+  return cases[2];
+}
+
 module.exports = {
   formatter: formatter,
   moment: moment,
@@ -56,6 +65,7 @@ module.exports = {
   adminID: 331990417,
   groupID: groupID,
 
+  findDeclension: findDeclension,
   fetchJSON: fetchJSON,
   setTyping: setTyping,
   requireVKAPI: requireVKAPI,
