@@ -15,7 +15,6 @@ function buildAuctionsView(auctions) {
           : `Последняя ставка: ${util.formatter.format(item.bid)} ${util.findDeclension(item.bid, coinsDeclensions)} от ${item.bidder}`
         }`
       );
-      texts.push(`Редкость предмета: ${item.rarity}`);
 
       return texts.join("\n");
     })
