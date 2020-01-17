@@ -5,6 +5,7 @@ const commandRegex = /\/([^ ]+)( .+)*/;
 function findCommand(message) {
   if(!commandRegex.test(message.text)) return;
   if(options.restricted === "true" && message.from_id !== util.adminID) return;
+
   const groups = commandRegex.exec(message.text);
 
   const args = groups[2] ? groups[2].split(" ") : [];
@@ -16,11 +17,12 @@ function findCommand(message) {
   };
 
   commands.forEach(it => {
-    if(it.name === command.name && it.argumentsCount === command.argumentsCount) {
-      if(it.forAdmins && message.from_id !== util.adminID) return;
+    if(it.name !== command.name) return;
+    if(it.forAdmins && message.from_id !== util.adminID) return;
+
+    if(it.argumentsCount === command.argumentsCount) {
       it.trigger(args, message.peer_id);
-    } else if(it.name === command.name & command.argumentsCount > 0 && it.argumentsCount === Infinity) {
-      if(it.forAdmins && message.from_id !== util.adminID) return;
+    } else if(command.argumentsCount > 0 && it.argumentsCount === Infinity) {
       it.trigger(groups[2], message.peer_id);
     }
   })
