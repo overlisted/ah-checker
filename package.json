@@ -13,7 +13,8 @@
     "express": "^4.17.1",
     "filter-async": "^1.0.0",
     "moment": "^2.24.0",
+    "nbt-js": "^0.1.0",
     "node-fetch": "^2.6.0",
-    "prismarine-nbt": "^1.2.1"
+    "zlib": "^1.0.5"
   }
 }

@@ -1,4 +1,6 @@
 const util = require("./util");
+const nbt = require("nbt-js");
+const zlib = require("zlib");
 
 const coinsDeclensions = ["койн", "койна", "койнов"];
 
@@ -7,7 +9,7 @@ function buildAuctionsView(auctions) {
     .map(item => {
       const texts = [];
 
-      texts.push(`=====< ${item.name} ${item.endTime - new Date() < 0 ? "(можно забрать!)" : ""}`);
+      texts.push(`=====< ${item.count === 1 ? "" : `[x${item.count}]`} ${item.name} ${item.endTime - new Date() < 0 ? "(можно забрать!)" : ""}`);
       if (item.endTime - new Date() > 0) texts.push(`Конец: ${util.moment(item.endTime).fromNow()}`);
       texts.push(
         `${item.bid === 0
@@ -23,13 +25,16 @@ function buildAuctionsView(auctions) {
 
 async function buildAuctionModel(auction) {
   let lastBid = auction.bids[auction.bids.length - 1];
+  // куча всего чтобы распарсить нбт предмета
+  let item = nbt.read(zlib.gunzipSync(Buffer.from(auction.item_bytes.data, "base64"))).payload[""].i[0];
+
   return {
     name: auction.item_name,
     endTime: auction.end,
     bid: auction.highest_bid_amount,
     bidder: lastBid ? await util.uuidToDisplayname(lastBid.bidder) : undefined,
+    count: item.Count,
     startingBid: auction.starting_bid,
-    rarity: auction.tier
   };
 }
 
