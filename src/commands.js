@@ -19,6 +19,9 @@ function findCommand(message) {
     if(it.name === command.name && it.argumentsCount === command.argumentsCount) {
       if(it.forAdmins && message.from_id !== util.adminID) return;
       it.trigger(args, message.peer_id);
+    } else if(it.name === command.name & command.argumentsCount > 0 && it.argumentsCount === Infinity) {
+      if(it.forAdmins && message.from_id !== util.adminID) return;
+      it.trigger(groups[2], message.peer_id);
     }
   })
 }
@@ -63,6 +66,15 @@ const commands = [
     trigger: async (args, peer) => {
       await util.sendMessage(peer, "Бот был отключен разработчиком.");
       process.exit();
+    }
+  },
+
+  { // eval 1 + 3
+    name: "eval",
+    argumentsCount: Infinity,
+    forAdmins: true,
+    trigger: (args, peer) => {
+      util.sendMessage(peer, `> ${eval(args)}`)
     }
   },
 
