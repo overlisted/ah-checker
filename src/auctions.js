@@ -58,19 +58,6 @@ async function buildProfileAuctionsModel(profileId) {
   );
 }
 
-const linesUntilNewMessage = 20;
-function cropLargeMessage(lines) {
-  const messages = [];
-
-  for(let i = 0; i < lines.length; i += linesUntilNewMessage) {
-    messages.push(lines.filter((it, index) => index >= i && index < i + linesUntilNewMessage).join("\n"))
-  }
-
-  return messages;
-}
-
-
-
 const ahCommands = [
   { // /ah True_han 2
     name: "ah",
@@ -87,7 +74,7 @@ const ahCommands = [
       textArr.push(buildAuctionsView(activeAuctions));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
-      cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => await util.sendMessage(peer, it));
+      util.cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => await util.sendMessage(peer, it));
     }
   },
 
@@ -106,7 +93,7 @@ const ahCommands = [
       textArr.push(activeAuctions.map(buildAuctionsView).join('\n'));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
-      cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => await util.sendMessage(peer, it));
+      util.cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => await util.sendMessage(peer, it));
     }
   }
 ];

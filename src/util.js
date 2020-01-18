@@ -49,6 +49,17 @@ async function uuidToDisplayname(uuid) {
   return json[json.length - 1].name;
 }
 
+const linesUntilNewMessage = 20;
+function cropLargeMessage(lines) {
+  const messages = [];
+
+  for(let i = 0; i < lines.length; i += linesUntilNewMessage) {
+    messages.push(lines.filter((it, index) => index >= i && index < i + linesUntilNewMessage).join("\n"))
+  }
+
+  return messages;
+}
+
 function findDeclension(number, cases) {
   number = Math.abs(number) % 100;
   const n = number % 10;
@@ -65,6 +76,7 @@ module.exports = {
   adminID: 331990417,
   groupID: groupID,
 
+  cropLargeMessage: cropLargeMessage,
   findDeclension: findDeclension,
   fetchJSON: fetchJSON,
   setTyping: setTyping,
