@@ -76,7 +76,7 @@ const ahCommands = [
     name: "ah",
     argumentsCount: 2,
     trigger: async (args, peer) => {
-      await util.setTyping();
+      await util.setTyping(peer);
 
       const player = (await util.requireHypixelAPI("player", `name=${args[0]}`)).player;
       const profile = Object.values(player.stats.SkyBlock.profiles)[args[1] - 1];
@@ -95,7 +95,7 @@ const ahCommands = [
     name: "ah",
     argumentsCount: 1,
     trigger: async (args, peer) => {
-      await util.setTyping();
+      await util.setTyping(peer);
 
       const player = (await util.requireHypixelAPI("player", `name=${args[0]}`)).player;
       const profiles = player.stats.SkyBlock.profiles;

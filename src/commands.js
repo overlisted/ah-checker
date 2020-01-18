@@ -35,7 +35,7 @@ const commands = [
     argumentsCount: 0,
     forAdmins: true,
     trigger: async (args, peer) => {
-      await util.setTyping();
+      await util.setTyping(peer);
       await util.sendMessage(peer, "Бот был отключен разработчиком.");
       process.exit();
     }
@@ -46,7 +46,7 @@ const commands = [
     argumentsCount: Infinity,
     forAdmins: true,
     trigger: async (args, peer) => {
-      await util.setTyping();
+      await util.setTyping(peer);
       util.sendMessage(peer, `> ${eval(args)}`)
     }
   },
@@ -56,7 +56,7 @@ const commands = [
     argumentsCount: 1,
     forAdmins: true,
     trigger: async (args, peer) => {
-      await util.setTyping();
+      await util.setTyping(peer);
       util.sendMessage(peer, `Настройка ${args[0]}: ${options[args[0]]}`)
     }
   },
@@ -67,7 +67,7 @@ const commands = [
     forAdmins: true,
     trigger: async (args, peer) => {
       if(args[1] === "=") {
-        await util.setTyping();
+        await util.setTyping(peer);
         const prev = options[args[0]];
 
         options[args[0]] = args[2];

@@ -32,7 +32,7 @@ async function sendMessage(peer, text) {
 async function setTyping(peer) {
   requireVKAPI(
     "messages.setActivity",
-    `type=typing&peer_id=${peer}&group_id=${groupID}`
+    `type=typing&peer_id=${peer}`
   );
 }
 
