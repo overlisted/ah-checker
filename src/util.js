@@ -5,8 +5,8 @@ const options = require("./options");
 moment.locale(options.locale);
 
 const formatter = new Intl.NumberFormat(options.locale);
-const hypixelKey = "c5d85caf-8735-4978-9178-34b4786ef4c8";
-const groupKey = "aa4e0ef8c7ad8f4353b7f0aecc8f7eef4fc6f9650f1e3d8770987bdd4628c3516755fc0af20b49a2c5ee0";
+const hypixelKey = "ENTER_YOUR_HYPIXEL_TOKEN_HERE";
+const groupKey = "ENTER_YOUR_VK_GROUP_TOKEN_HERE";
 const groupID = 190737605;
 
 async function fetchJSON(uri) {
