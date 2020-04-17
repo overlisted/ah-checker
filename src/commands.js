@@ -5,7 +5,7 @@ const auctions = require("./auctions");
 const commandRegex = /\/([^ ]+)( .+)*/;
 function findCommand(message) {
   if(!commandRegex.test(message.text)) return;
-  if(options.restricted === "true" && message.from_id !== util.adminID) return;
+  if(options.restricted === "true" && message.from_id != util.adminID) return;
 
   const groups = commandRegex.exec(message.text);
 
@@ -19,7 +19,7 @@ function findCommand(message) {
 
   commands.forEach(it => {
     if(it.name !== command.name) return;
-    if(it.forAdmins && message.from_id !== util.adminID) return;
+    if(it.forAdmins && message.from_id != util.adminID) return;
 
     if(it.argumentsCount === command.argumentsCount) {
       it.trigger(args, message.peer_id);
