@@ -1,6 +1,5 @@
 # ah-checker
-Special for memoza
+Now free!
 
-## Использование
-Запуск производится при помощи команды `npm run start`. Если у вас на
-машине не стоит NPM и nodejs - установите по гайдам из гугла
+## Usage
+Run with `$ npm run start`. If your server doesn't have NPM, install it with tutorials from internet
