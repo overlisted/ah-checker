@@ -1,12 +1,10 @@
 {
   "name": "ah-checker",
-  "version": "1.0.0",
-  "description": "A bot for VKontakte.",
   "main": "src/index.js",
+  "private": true,
   "scripts": {
     "start": "node src/index.js"
   },
-  "author": "overlisted",
   "dependencies": {
     "moment": "^2.24.0",
     "nbt-js": "^0.1.0",

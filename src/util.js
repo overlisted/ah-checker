@@ -5,6 +5,7 @@ const options = require("./options");
 moment.locale(options.locale);
 
 const formatter = new Intl.NumberFormat(options.locale);
+const adminID = "ENTER_YOUR_VK_ID_HERE";
 const hypixelKey = "ENTER_YOUR_HYPIXEL_TOKEN_HERE";
 const groupKey = "ENTER_YOUR_VK_GROUP_TOKEN_HERE";
 const groupID = "ENTER_YOUR_VK_GROUP_ID_HERE";
@@ -40,10 +41,6 @@ async function requireHypixelAPI(method, args) {
   return await fetchJSON(`https://api.hypixel.net/${method}?key=${hypixelKey}&${args}`);
 }
 
-async function requireSlothpixel(method, args) {
-  return await fetchJSON(`https://api.slothpixel.me/${method}&${args}`);
-}
-
 async function uuidToDisplayname(uuid) {
   const json = await fetchJSON(`https://api.mojang.com/user/profiles/${uuid}/names`);
   return json[json.length - 1].name;
@@ -73,7 +70,7 @@ module.exports = {
   formatter: formatter,
   moment: moment,
 
-  adminID: 331990417,
+  adminID: adminID,
   groupID: groupID,
 
   cropLargeMessage: cropLargeMessage,
