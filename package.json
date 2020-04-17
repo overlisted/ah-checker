@@ -8,7 +8,6 @@
   "dependencies": {
     "moment": "^2.24.0",
     "nbt-js": "^0.1.0",
-    "node-fetch": "^2.6.0",
-    "zlib": "^1.0.5"
+    "node-fetch": "^2.6.0"
   }
 }

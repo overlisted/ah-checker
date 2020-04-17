@@ -2,7 +2,7 @@ const util = require("./util");
 const nbt = require("nbt-js");
 const zlib = require("zlib");
 
-const coinsDeclensions = ["койн", "койна", "койнов"];
+const coinsCases = ["койн", "койна", "койнов"];
 
 function orEmptyString(condition, string) {
   return condition ? string : "";
@@ -22,8 +22,8 @@ function buildAuctionsView(auctions) {
       if (item.endTime - new Date() > 0) texts.push(`Конец: ${util.moment(item.endTime).fromNow()}`);
       texts.push(
         `${item.bid === 0
-          ? `Начальная ставка: ${util.formatter.format(item.startingBid)} ${util.findDeclension(item.bid, coinsDeclensions)}`
-          : `Последняя ставка: ${util.formatter.format(item.bid)} ${util.findDeclension(item.bid, coinsDeclensions)} от ${item.bidder}`
+          ? `Начальная ставка: ${util.formatter.format(item.startingBid)} ${util.findDeclension(item.bid, coinsCases)}`
+          : `Последняя ставка: ${util.formatter.format(item.bid)} ${util.findDeclension(item.bid, coinsCases)} от ${item.bidder}`
         }`
       );
 
