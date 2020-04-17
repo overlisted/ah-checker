@@ -7,7 +7,7 @@ moment.locale(options.locale);
 const formatter = new Intl.NumberFormat(options.locale);
 const hypixelKey = "ENTER_YOUR_HYPIXEL_TOKEN_HERE";
 const groupKey = "ENTER_YOUR_VK_GROUP_TOKEN_HERE";
-const groupID = 190737605;
+const groupID = "ENTER_YOUR_VK_GROUP_ID_HERE";
 
 async function fetchJSON(uri) {
   return (await fetch(uri)).json();
