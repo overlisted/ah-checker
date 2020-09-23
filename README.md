@@ -1,7 +1,7 @@
 # ah-checker
 Now free!
 
-**Some older commits are described in russian, please never mind**
+**Some older commits are described in russian, please don't mind**
 
 ## Usage
 - Clone or download this repository into your server
