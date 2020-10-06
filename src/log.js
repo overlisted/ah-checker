@@ -7,7 +7,7 @@ let logFileStream;
 function writeLog(severity, message) {
   const date = util.moment().format("hh:mm:ss.SS");
   const line = `[${date}] [${severity}] ${message}`;
-  logFileStream.write(options.logFile, line + "\n");
+  logFileStream.write(line + "\n");
 
   util.sendMessage(util.adminID, "[ah-checker]" + line);
 }
