@@ -52,7 +52,7 @@ const commands = [
     forAdmins: true,
     trigger: async (args, peer) => {
       await util.setTyping(peer);
-      util.sendMessage(peer, `> ${eval(args)}`)
+      util.sendMessage(peer, "> " + await eval(`(async () => ${args})()`));
     }
   },
 
