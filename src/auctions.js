@@ -95,7 +95,7 @@ const ahCommands = [
 
       util.cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => {
         await util.sendMessage(peer, it);
-        await util.sleep(100);
+        await util.sleep(1000);
       });
     }
   }
