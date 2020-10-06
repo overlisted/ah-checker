@@ -58,6 +58,13 @@ async function buildProfileAuctionsModel(profileId) {
   );
 }
 
+function getSoldSum(aucs) {
+  return aucs[0]
+    .filter(it => it.endTime - new Date() < 0)
+    .map(it => it.bid)
+    .reduce((a, b) => a + b, 0);
+}
+
 const ahCommands = [
   { // /ah True_han 2
     name: "ah",
@@ -71,6 +78,7 @@ const ahCommands = [
 
       const textArr = [];
       textArr.push(`Аукционы игрока ${await util.uuidToDisplayname(player.uuid)} (${profile.cute_name}):`);
+      textArr.push(`====< Всего можно забрать: ${getSoldSum(activeAuctions)}`);
       textArr.push(buildAuctionsView(activeAuctions));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
@@ -90,6 +98,7 @@ const ahCommands = [
 
       const textArr = [];
       textArr.push(`Аукционы игрока ${await util.uuidToDisplayname(player.uuid)}:`);
+      textArr.push(`=====< Всего можно забрать: ${getSoldSum(activeAuctions)}`);
       textArr.push(activeAuctions.map(buildAuctionsView).join('\n'));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
