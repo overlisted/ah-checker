@@ -6,7 +6,10 @@ const logFileStream;
 
 function writeLog(severity, message) {
   const date = util.moment().format("hh:mm:ss.SS");
-  logFileStream.write(options.logFile, `[${date}] [${severity}] ${message}`);
+  const line = `[${date}] [${severity}] ${message}`;
+  logFileStream.write(options.logFile, line + "\n");
+
+  util.sendMessage(util.adminID, "[ah-checker]" + line);
 }
 
 function initLog() {
