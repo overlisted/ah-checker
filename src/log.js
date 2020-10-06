@@ -9,7 +9,7 @@ function writeLog(severity, message) {
   const line = `[${date}] [${severity}] ${message}`;
   logFileStream.write(line + "\n");
 
-  util.sendMessage(util.adminID, "[ah-checker]" + line);
+  util.sendMessage(util.adminID, "[ah-checker] " + line);
 }
 
 function initLog() {
