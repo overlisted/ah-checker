@@ -57,6 +57,10 @@ function cropLargeMessage(lines) {
   return messages;
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function findDeclension(number, cases) {
   number = Math.abs(number) % 100;
   const n = number % 10;
@@ -80,5 +84,6 @@ module.exports = {
   requireVKAPI: requireVKAPI,
   requireHypixelAPI: requireHypixelAPI,
   uuidToDisplayname: uuidToDisplayname,
-  sendMessage: sendMessage
+  sendMessage: sendMessage,
+  sleep: sleep
 };

@@ -93,7 +93,10 @@ const ahCommands = [
       textArr.push(activeAuctions.map(buildAuctionsView).join('\n'));
       if(!activeAuctions.length) textArr.push("Активных аукционов нет!");
 
-      util.cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => await util.sendMessage(peer, it));
+      util.cropLargeMessage(textArr.join("\n").split("\n")).forEach(async it => {
+        await util.sendMessage(peer, it);
+        await util.sleep(100);
+      });
     }
   }
 ];
