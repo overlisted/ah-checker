@@ -2,7 +2,7 @@ const options = require("./options");
 const fs = require("fs");
 const util = require("./util");
 
-const logFileStream;
+let logFileStream;
 
 function writeLog(severity, message) {
   const date = util.moment().format("hh:mm:ss.SS");
