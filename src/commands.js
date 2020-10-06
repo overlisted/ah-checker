@@ -3,7 +3,7 @@ const options = require("./options");
 const auctions = require("./auctions");
 const logger = require("./log");
 
-const commandRegex = /\/([^ ]+)( .+)*/;
+const commandRegex = /^\/([^ ]+)( .+)*$/;
 function findCommand(message) {
   if(!commandRegex.test(message.text)) return;
   if(options.restricted === "true" && message.from_id != util.adminID) return;
