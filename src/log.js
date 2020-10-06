@@ -13,6 +13,7 @@ function writeLog(severity, message) {
 }
 
 function initLog() {
+  fs.truncateSync(options.logFile, 0);
   logFileStream = fs.createWriteStream(options.logFile, {flags: "a"});
 }
 
