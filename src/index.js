@@ -1,4 +1,5 @@
 const longPoll = require("./longpoll");
+const logger = require("./log")
 
 longPoll.run();
-console.log("Ready!");
+logger.writeLog("INFO", "Ready!");

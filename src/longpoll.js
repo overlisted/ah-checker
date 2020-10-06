@@ -1,5 +1,6 @@
 const util = require("./util");
 const commands = require("./commands");
+const logger = require("./log");
 
 async function longPollWorker(response) {
   response.updates.forEach(async it => {
@@ -8,7 +9,11 @@ async function longPollWorker(response) {
 }
 
 async function getNewLongPollServer() {
-  return (await util.requireVKAPI("groups.getLongPollServer", `group_id=${util.groupID}`)).response;
+  try {
+    return (await util.requireVKAPI("groups.getLongPollServer", `group_id=${util.groupID}`)).response;
+  } catch(e) {
+    logger.writeLog("FATAL", "Can't get long poll server: " + e.message);
+  }
 }
 
 async function runLongPoll() {
@@ -31,4 +36,3 @@ async function runLongPoll() {
 module.exports = {
   run: runLongPoll
 };
-

@@ -1,6 +1,7 @@
 const util = require("./util");
 const options = require("./options");
 const auctions = require("./auctions");
+const logger = require("./log");
 
 const commandRegex = /\/([^ ]+)( .+)*/;
 function findCommand(message) {
@@ -21,10 +22,14 @@ function findCommand(message) {
     if(it.name !== command.name) return;
     if(it.forAdmins && message.from_id != util.adminID) return;
 
-    if(it.argumentsCount === command.argumentsCount) {
-      it.trigger(args, message.peer_id);
-    } else if(command.argumentsCount > 0 && it.argumentsCount === Infinity) {
-      it.trigger(groups[2], message.peer_id);
+    try {
+      if(it.argumentsCount === command.argumentsCount) {
+        it.trigger(args, message.peer_id);
+      } else if(command.argumentsCount > 0 && it.argumentsCount === Infinity) {
+        it.trigger(groups[2], message.peer_id);
+      }
+    } catch(e) {
+      logger.writeLog("ERROR", `Exception in command ${it.name}: ${e.message}`);
     }
   })
 }
