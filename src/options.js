@@ -6,6 +6,7 @@ class Options {
   restricted = "false";
   apiVersion = "5.103";
   locale = "ru-RU";
+  logFile = "log.txt";
 
   save() {
     fs.writeFileSync(path, JSON.stringify(this, null, 2))
